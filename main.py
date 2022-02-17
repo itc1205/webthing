@@ -1,3 +1,4 @@
+from PIL import Image
 from flask import Flask, url_for, request
 
 app = Flask(__name__)
@@ -203,48 +204,50 @@ def results(nickname="{nickname}", level=0, rating=0.0):
 @app.route('/carousel')
 def carousel():
     return f"""<!doctype html>
-                    <html lang="en">
-                      <head>
-                        <meta charset="utf-8">
-                        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-                        <link rel="stylesheet" href="{url_for(STATIC_PATH, filename="css/style.css")}">
-                        <link rel="stylesheet" 
-                        href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" 
-                        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" 
-                        crossorigin="anonymous">
-                        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-                        <title>Результат</title>
-                      </head>
-                      <body>
-                       <h1>Пейзажи Марса</h1>
-                       <div id="carouselMars" class="carousel-slide" data-bs-ride="carousel">
-                        <div class="carousel-indicators">
-                         <button type="button" data-bs-target="#carouselMars" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                         <button type="button" data-bs-target="#carouselMars" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                         <button type="button" data-bs-target="#carouselMars" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                <html lang="en">
+                  <head>
+                    <meta charset="utf-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+                    <link rel="stylesheet" href="{url_for(STATIC_PATH, filename="css/style.css")}">
+                    <link rel="stylesheet" 
+                    href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" 
+                    integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" 
+                    crossorigin="anonymous">
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" 
+                    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" 
+                    crossorigin="anonymous"></script>
+                    <title>Результат</title>
+                  </head>
+                  <body>
+                   <center><h1>Пейзажи Марса</h1></center>
+                   <div id="carouselMars" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                     <button type="button" data-bs-target="#carouselMars" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                     <button type="button" data-bs-target="#carouselMars" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                     <button type="button" data-bs-target="#carouselMars" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    </div>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                          <img src="{url_for(STATIC_PATH, filename="images/image_1.jpg")}" class="d-block w-100" alt="misfortune">
                         </div>
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                              <img src="{url_for(STATIC_PATH, filename="images/image_1.jpg")}" class="d-block w-100" alt="misfortune">
-                            </div>
-                            <div class="carousel-item">
-                              <img src="{url_for(STATIC_PATH, filename="images/image_2.jpg")}" class="d-block w-100" alt="misfortune">
-                            </div>
-                            <div class="carousel-item">
-                              <img src="{url_for(STATIC_PATH, filename="images/image_3.jpg")}" class="d-block w-100" alt="misfortune">
-                            </div>
-                          </div>
-                          <button class="carousel-control-prev" type="button" data-bs-target="#carouselMars" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                          </button>
-                          <button class="carousel-control-next" type="button" data-bs-target="#carouselMars" data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                          </button>
+                        <div class="carousel-item">
+                          <img src="{url_for(STATIC_PATH, filename="images/image_2.jpg")}" class="d-block w-100" alt="misfortune">
                         </div>
-                      </body>
-                    </html>"""
+                        <div class="carousel-item">
+                          <img src="{url_for(STATIC_PATH, filename="images/image_3.jpg")}" class="d-block w-100" alt="misfortune">
+                        </div>
+                      </div>
+                      <button class="carousel-control-prev" type="button" data-bs-target="#carouselMars" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                      </button>
+                      <button class="carousel-control-next" type="button" data-bs-target="#carouselMars" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                      </button>
+                    </div>
+                  </body>
+                </html>"""
 
 
 @app.route('/astronaut_selection', methods=['POST', 'GET'])  # Все очень ужасно с табуляцией, но хотя бы работает
@@ -257,11 +260,12 @@ def form():
                         <meta charset="utf-8">
                         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
                         <link rel="stylesheet" href="{url_for(STATIC_PATH, filename="css/style.css")}">
-                        <link rel="stylesheet" 
-                        href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" 
-                        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" 
-                        crossorigin="anonymous">
-                        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+                        <!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+                        <!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
                         <title>Отбор астронавтов</title>
                       </head>
                       <body>
@@ -339,6 +343,40 @@ def form():
         for key in request.form.keys():
             print(key, '-', request.form[key])
         return "Форма отправлена, спасибо за участие!"
+
+
+@app.route('/load_photo', methods=['POST', 'GET'])
+def load_photo():
+    if request.method == 'GET':
+        return f""" <!doctype html>
+                    <html lang="en">
+                      <head>
+                        <meta charset="utf-8">
+                        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+                        <link rel="stylesheet" href="{url_for(STATIC_PATH, filename="css/style.css")}">
+                        <link rel="stylesheet" 
+                        href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" 
+                        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" 
+                        crossorigin="anonymous">
+                        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+                        <title>Отбор астронавтов</title>
+                      </head>
+                      <body>
+                       <form class="login_form" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                          <label for="photo">Приложите фотографию</label>
+                          <input type="file" class="form-control-file" id="photo" name="file"><br>
+                          <img src="{url_for(STATIC_PATH, filename="images/usr.jpg")}" alt="Здесь должно быть ваше фото">
+                         </div>
+                         <button type="submit" class="btn btn-primary">Давай ломай сервак урааа давай ееее</button>
+                       </form>
+                      </body>
+                    </html>"""
+    elif request.method == 'POST':
+        f = request.files['file']
+        PILimage = Image.fromarray(f.read())
+        PILimage.save('result.png')
+        return "Форма отправлена"
 
 
 if __name__ == '__main__':
