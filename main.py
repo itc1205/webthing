@@ -366,7 +366,7 @@ def load_photo():
                         <div class="form-group">
                           <label for="photo">Приложите фотографию</label>
                           <input type="file" class="form-control-file" id="photo" name="file"><br>
-                          <img src="{url_for(STATIC_PATH, filename="images/usr.jpg")}" alt="Здесь должно быть ваше фото">
+                          <img class = "form1-image" src="{url_for(STATIC_PATH, filename="images/usr.png")}" alt="Здесь должно быть ваше фото">
                          </div>
                          <button type="submit" class="btn btn-primary">Давай ломай сервак урааа давай ееее</button>
                        </form>
@@ -374,8 +374,9 @@ def load_photo():
                     </html>"""
     elif request.method == 'POST':
         f = request.files['file']
-        PILimage = Image.fromarray(f.read())
-        PILimage.save('result.png')
+        file_img = 'static/images/usr.png'
+        with open(file_img, "wb") as file:
+            file.write(f.read())
         return "Форма отправлена"
 
 
