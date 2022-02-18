@@ -368,7 +368,7 @@ def load_photo():
                           <input type="file" class="form-control-file" id="photo" name="file"><br>
                           <img class = "form1-image" src="{url_for(STATIC_PATH, filename="images/usr.png")}" alt="Здесь должно быть ваше фото">
                          </div>
-                         <button type="submit" class="btn btn-primary">Давай ломай сервак урааа давай ееее</button>
+                         <button type="submit" class="btn btn-primary">Отправить</button>
                        </form>
                       </body>
                     </html>"""
